@@ -3,16 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/index.css">
         <title>Juego Parejas</title>
     </head>
     <body>
         <h1>Juego de Parejas</h1>
         <div id="input_div">
             <label for="in_fila">Numero de filas:</label>
-            <input type="number" value="3" name="in_fila" id="in_fila">
+            <input type="number" min="1" max="10" value="3" name="in_fila" id="in_fila">
             <br>
             <label for="in_col">Numero de columnas:</label>
-            <input type="number" value="4" name="in_col" id="in_col">
+            <input type="number" min="1" max="10" value="4" name="in_col" id="in_col">
             <br>
             <input type="button" value="A jugar" onclick="prepareGame()">
         </div>

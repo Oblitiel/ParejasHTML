@@ -1,3 +1,5 @@
+var cards = []
+
 function prepareGame(){
     var fila = document.getElementById("in_fila").value
     var col = document.getElementById("in_col").value
@@ -15,6 +17,8 @@ function prepareGame(){
     // Esconde el div
     var div = document.getElementById("input_div")
     div.classList.add("invisible")
+    // Borrar el elemento
+    // document.getElementById("input_div").remove()
 
     document.getElementById("table_div").appendChild(generateTable(col,fila))
 }
@@ -27,8 +31,12 @@ function generateTable(col, row) {
         
         for (let j = 0; j < col; j++) {
             var td = document.createElement("td")
-            var text = document.createTextNode((i*col)+j+1)
-            td.appendChild(text)
+            var card = document.createElement("div")
+            card.classList.add("card-hide")
+            
+            card.setAttribute("onclick","flip(this)")
+            cards.push(card)
+            td.appendChild(card)
             tr.appendChild(td)
         }
 
@@ -36,4 +44,12 @@ function generateTable(col, row) {
     }
 
     return table
+}
+
+function flip(card){
+    if (card.classList.contains("card-show")){
+        card.classList.remove("card-show")
+    } else{
+        card.classList.add("card-show")
+    }
 }
