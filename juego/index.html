@@ -6,14 +6,17 @@
         <title>Juego Parejas</title>
     </head>
     <body>
-        <div id="input">
-            <label for="col">Introduzca el numero de columnas</label>
-            <input type="text" name="col" id="col" />
-            <br/>
-            <label for="row">Introduzca el numero de filas</label>
-            <input type="text" name="row" id="row" />
-            <br/>
+        <h1>Juego de Parejas</h1>
+        <div id="input_div">
+            <label for="in_fila">Numero de filas:</label>
+            <input type="number" value="3" name="in_fila" id="in_fila">
+            <br>
+            <label for="in_col">Numero de columnas:</label>
+            <input type="number" value="4" name="in_col" id="in_col">
+            <br>
+            <input type="button" value="A jugar" onclick="prepareGame()">
         </div>
+        <div id="table_div"></div>
         <script src="scripts/game.js"></script>
     </body>
 </html>
