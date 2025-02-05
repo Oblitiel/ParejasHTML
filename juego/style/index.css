@@ -1,8 +1,9 @@
 
+
 table {
     border-collapse: collapse;
-    width: 50%;
-    height: 200px;
+    width: 50vh; /*Uso vh por que quiero que se proporcianal a la altura siempre*/
+    height: 60vh;
 }
 .invisible {
     display: none;
