@@ -1,15 +1,26 @@
 var cards = []
+var row
+var col
+var tapeds = 0
+
+function runGame(){
+    row = document.getElementById("in_fila").value
+    col = document.getElementById("in_col").value
+    prepareGame(col, row)
+    poblateCards(cards)
+}
 
 function prepareGame(){
-    var fila = document.getElementById("in_fila").value
-    var col = document.getElementById("in_col").value
-
-    if (((fila * col) % 2 ) != 0) {
+    if (((row * col) % 2 ) != 0) {
         var parrafo = document.createElement("p")
         var text = document.createTextNode("No son unos valores de pareja validos")
         parrafo.appendChild(text)
         // var div = document.getElementById("input_div")
         // div.appendChild(parrafo)
+        alert("No son unos valores de pareja validos")
+        return
+    }
+    if (row<0 || col<0){
         alert("No son unos valores de pareja validos")
         return
     }
@@ -20,7 +31,7 @@ function prepareGame(){
     // Borrar el elemento
     // document.getElementById("input_div").remove()
 
-    document.getElementById("table_div").appendChild(generateTable(col,fila))
+    document.getElementById("table_div").appendChild(generateTable(col,row))
 }
 
 function generateTable(col, row) {
@@ -34,8 +45,12 @@ function generateTable(col, row) {
             var card = document.createElement("div")
             card.classList.add("card-hide")
             
+            card.style.width = 50 / col + "vh"
+            card.style.height = 50 / col*1.25 + "vh"
+
             card.setAttribute("onclick","flip(this)")
             cards.push(card)
+            
             td.appendChild(card)
             tr.appendChild(td)
         }
@@ -43,6 +58,7 @@ function generateTable(col, row) {
         table.appendChild(tr)
     }
 
+    table.style.height = 50/col*1.25*row + "vh"
     return table
 }
 
@@ -51,5 +67,23 @@ function flip(card){
         card.classList.remove("card-show")
     } else{
         card.classList.add("card-show")
+        tapeds
     }
+}
+
+function poblateCards(cards){
+    var nums = []
+    for (let index = 0; index < row*col/2; index++) {
+        nums.push(index)
+        nums.push(index)
+    }
+
+    cards.forEach(card => {
+        let p = document.createElement("p")
+        let randIndex = Math.floor(Math.random()*nums.length)
+        let text = document.createTextNode(nums[randIndex])
+        nums.splice(randIndex,1)
+        p.appendChild(text)
+        card.appendChild(p)
+    });
 }

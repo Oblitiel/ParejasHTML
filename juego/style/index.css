@@ -3,7 +3,6 @@
 table {
     border-collapse: collapse;
     width: 50vh; /*Uso vh por que quiero que se proporcianal a la altura siempre*/
-    height: 60vh;
 }
 .invisible {
     display: none;
@@ -11,10 +10,20 @@ table {
 
 .card-hide {
     background-color: blue;
-    width: 100%;
-    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-hide > p {
+    display: none;
 }
 
 .card-show {
     background-color: coral;
+}
+
+.card-show > p {
+    display: block;
 }
