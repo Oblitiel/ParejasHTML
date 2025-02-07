@@ -1,7 +1,8 @@
 var cards = []
 var row
 var col
-var tapeds = 0
+var tapped = [[]]
+var solved = []
 
 function runGame(){
     row = document.getElementById("in_fila").value
@@ -41,8 +42,9 @@ function generateTable(col, row) {
         var tr = document.createElement("tr")
         
         for (let j = 0; j < col; j++) {
-            var td = document.createElement("td")
-            var card = document.createElement("div")
+            let td = document.createElement("td")
+            let card = document.createElement("div")
+            card.classList.add("card")
             card.classList.add("card-hide")
             
             card.style.width = 50 / col + "vh"
@@ -50,6 +52,9 @@ function generateTable(col, row) {
 
             card.setAttribute("onclick","flip(this)")
             cards.push(card)
+
+            var p = document.createElement("p")
+            card.appendChild(p)
             
             td.appendChild(card)
             tr.appendChild(td)
@@ -57,17 +62,37 @@ function generateTable(col, row) {
 
         table.appendChild(tr)
     }
-
-    table.style.height = 50/col*1.25*row + "vh"
     return table
 }
 
 function flip(card){
-    if (card.classList.contains("card-show")){
-        card.classList.remove("card-show")
-    } else{
-        card.classList.add("card-show")
-        tapeds
+    if (card.classList.contains("card-hide")) {
+        card.classList.remove("card-hide")
+        if (tapped[tapped.length-1].length<2){
+            tapped[tapped.length-1].push(card)
+        }
+        else {
+            tapped.push([card])
+            checkPair(tapped.shift())
+        }
+        if (tapped[tapped.length-1].length == 2) {
+            setTimeout(checkPairTimeOut,1000)
+        }
+        console.log(tapped);
+    }
+}
+
+function checkPairTimeOut(){
+    checkPair(tapped.shift())
+}
+
+function checkPair(pair){
+    if (pair[0].number == pair[1].number) {
+        solved.concat(pair)
+    }else{
+        pair.forEach(singleCard => {
+            singleCard.classList.add("card-hide")
+        });
     }
 }
 
@@ -79,11 +104,9 @@ function poblateCards(cards){
     }
 
     cards.forEach(card => {
-        let p = document.createElement("p")
         let randIndex = Math.floor(Math.random()*nums.length)
-        let text = document.createTextNode(nums[randIndex])
+        card.firstElementChild.innerHTML = nums[randIndex]
+        card.number = nums[randIndex]
         nums.splice(randIndex,1)
-        p.appendChild(text)
-        card.appendChild(p)
     });
 }
