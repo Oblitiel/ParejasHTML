@@ -1,8 +1,8 @@
 var cards = []
 var row
 var col
-var tapped = [[]]
-var solved = []
+var tapped = []
+var checking = false
 
 function runGame(){
     row = document.getElementById("in_fila").value
@@ -50,7 +50,7 @@ function generateTable(col, row) {
             card.style.width = 50 / col + "vh"
             card.style.height = 50 / col*1.25 + "vh"
 
-            card.setAttribute("onclick","flip(this)")
+            card.setAttribute("onclick","flipAndCheck(this)")
             cards.push(card)
 
             var p = document.createElement("p")
@@ -65,35 +65,58 @@ function generateTable(col, row) {
     return table
 }
 
-function flip(card){
-    if (card.classList.contains("card-hide")) {
+function hideCards() {
+    cards.forEach(card => {
+        card.classList.remove("card-show")
+        card.classList.add("card-hide")
+    });
+}
+
+function showCards() {
+    cards.forEach(card => {
         card.classList.remove("card-hide")
-        if (tapped[tapped.length-1].length<2){
-            tapped[tapped.length-1].push(card)
+        card.classList.add("card-show")
+    });
+}
+
+function flipAndCheck(card){
+    if (!card.classList.contains("card-show") && !checking) {
+        // Girar carta y guardarla para comprobar más tarde
+        card.classList.add("card-show")
+        card.classList.remove("card-hide")
+        tapped.push(card)
+        
+        if (tapped.length == 2) {
+            checking = true
+            if (isPair(tapped)) {
+                tapped.splice(0,2)
+                checking = false
+            }
+            else {
+                setTimeout(unFlip,1000)
+            }
         }
-        else {
-            tapped.push([card])
-            checkPair(tapped.shift())
-        }
-        if (tapped[tapped.length-1].length == 2) {
-            setTimeout(checkPairTimeOut,1000)
-        }
-        console.log(tapped);
     }
 }
 
-function checkPairTimeOut(){
-    checkPair(tapped.shift())
+function unFlip(pair){
+    if (pair == undefined) {
+        pair = tapped
+    }
+
+    pair.forEach(singleCard => {
+        singleCard.classList.remove("card-show")
+        singleCard.classList.add("card-hide")
+    });
+    checking = false
+    tapped.splice(0,2)
 }
 
-function checkPair(pair){
+function isPair(pair){
     if (pair[0].number == pair[1].number) {
-        solved.concat(pair)
-    }else{
-        pair.forEach(singleCard => {
-            singleCard.classList.add("card-hide")
-        });
+        return true
     }
+    return false
 }
 
 function poblateCards(cards){
