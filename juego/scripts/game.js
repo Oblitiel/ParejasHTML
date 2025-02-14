@@ -1,15 +1,13 @@
-var row
-var col
 var tapped = []
-var checking = false
-var solvedPairs = 0
+var paused = false
+var unSolvedPairs = 0
 
 
 function runGame(){
-    row = document.getElementById("in_fila").value
-    col = document.getElementById("in_col").value
+    let row = document.getElementById("in_fila").value
+    let col = document.getElementById("in_col").value
     prepareGame(col, row)
-    // poblateCards(cards)
+    startTimer()
 }
 
 function prepareGame(col, row){
@@ -22,9 +20,12 @@ function prepareGame(col, row){
     var div = document.getElementById("input_div")
     div.classList.add("invisible")
 
+    // Calcula el numero de parejas a resolver
+    unSolvedPairs = row * col / 2
+
     // Genera la tabla
     let table = generateTable(col,row)
-    document.getElementById("table_div").appendChild(table)
+    document.getElementById("game_div").appendChild(table)
 }
 
 function generateTable(col, row) {
@@ -42,9 +43,8 @@ function generateTable(col, row) {
         for (let j = 0; j < col; j++) {
             let td = document.createElement("td")
             
-
             let randIndex = Math.floor(Math.random()*nums.length)
-            let card = generateCard(nums[randIndex])
+            let card = generateCard(nums[randIndex], 50 / col)
             nums.splice(randIndex,1)
 
             td.appendChild(card)
@@ -56,13 +56,13 @@ function generateTable(col, row) {
     return table
 }
 
-function generateCard(num){
+function generateCard(num, size){
     let card = document.createElement("div")
     card.classList.add("card")
     card.classList.add("card-hide")
     
-    card.style.width = 50 / col + "vh"
-    card.style.height = 50 / col * 1.25 + "vh"
+    card.style.width = size + "vh"
+    card.style.height = size * 1.25 + "vh"
 
     card.setAttribute("onclick","flipAndCheck(this)")
 
@@ -73,58 +73,40 @@ function generateCard(num){
     return card
 }
 
-// function hideCards() {
-//     cards.forEach(card => {
-//         card.classList.remove("card-show")
-//         card.classList.add("card-hide")
-//     });
-// }
-
-// function showCards() {
-//     cards.forEach(card => {
-//         card.classList.remove("card-hide")
-//         card.classList.add("card-show")
-//     });
-// }
-
 function flipAndCheck(card){
-    if (!card.classList.contains("card-show") && !checking) {
+    if (!card.classList.contains("card-show") && !paused) {
         // Girar carta y guardarla para comprobar más tarde
         card.classList.add("card-show")
         card.classList.remove("card-hide")
         tapped.push(card)
         
         if (tapped.length == 2) {
-            checking = true
+            paused = true
             if (isPair(tapped)) {
                 tapped.splice(0,2)
-                checking = false
+                paused = false
             }
             else {
-                setTimeout(unFlip,1000)
+                setTimeout(unFlip,1000,tapped)
             }
         }
     }
 }
 
 function unFlip(pair){
-    if (pair == undefined) {
-        pair = tapped
-    }
-
     pair.forEach(singleCard => {
         singleCard.classList.remove("card-show")
         singleCard.classList.add("card-hide")
     });
-    checking = false
+    paused = false
     tapped.splice(0,2)
 }
 
 function isPair(pair){
     if (pair[0].number == pair[1].number) {
-        solvedPairs ++
+        unSolvedPairs --
         // Comprobar que esta resuleto
-        if (solvedPairs == (col * row)/2) {
+        if (unSolvedPairs == 0) {
             alert("Ganaste pive")
         }
         return true

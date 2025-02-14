@@ -13,9 +13,6 @@
 .card-hide{
     background-color: skyblue;
 
-    /* animation-name: hide;
-    animation-duration: 1s; */
-
     transition: transform 0.6s;
     transform-style: preserve-3d;
     transform: rotateY(180deg);
@@ -27,31 +24,8 @@
 
 .card-show {
     background-color: antiquewhite;
-    
-    /* animation-name: show;
-    animation-duration: 1s; */
 
     transition: transform 0.6s;
     transform-style: preserve-3d;
     transform: rotateY(0deg);
-}
-
-@keyframes show {
-    0% {
-        background-color: skyblue;
-    }
-    
-    100% {
-        background-color: antiquewhite;
-    }
-}
-
-@keyframes hide {
-    0% {
-        background-color: antiquewhite;
-    }
-    
-    100% {
-        background-color: skyblue;
-    }
 }
