@@ -1,4 +1,4 @@
-var time = 60
+var time = 10
 var iniTime = time
 var interval
 

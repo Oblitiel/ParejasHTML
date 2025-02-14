@@ -19,6 +19,8 @@ function prepareGame(col, row){
 
     // Cambiar color del fondo
     let body = document.getElementById("body")
+    body.style.animationName = "bg-animation"
+    body.style.animationDuration = time + "s"
 
     // Esconde el div
     let div = document.getElementById("input_div")
