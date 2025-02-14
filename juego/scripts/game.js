@@ -8,6 +8,7 @@ function runGame(){
     let col = document.getElementById("in_col").value
     prepareGame(col, row)
     startTimer()
+    addPoints(1000)
 }
 
 function prepareGame(col, row){
@@ -16,8 +17,11 @@ function prepareGame(col, row){
         return
     }
 
+    // Cambiar color del fondo
+    let body = document.getElementById("body")
+
     // Esconde el div
-    var div = document.getElementById("input_div")
+    let div = document.getElementById("input_div")
     div.classList.add("invisible")
 
     // Calcula el numero de parejas a resolver
@@ -85,10 +89,16 @@ function flipAndCheck(card){
             if (isPair(tapped)) {
                 tapped.splice(0,2)
                 paused = false
+                addPoints(1000)
             }
             else {
                 setTimeout(unFlip,1000,tapped)
+                addPoints(-500)
             }
+        }
+        // Comprobar que esta resuleto
+        if (unSolvedPairs == 0) {
+            setTimeout(endGame,500,true)
         }
     }
 }
@@ -105,11 +115,14 @@ function unFlip(pair){
 function isPair(pair){
     if (pair[0].number == pair[1].number) {
         unSolvedPairs --
-        // Comprobar que esta resuleto
-        if (unSolvedPairs == 0) {
-            alert("Ganaste pive")
-        }
         return true
     }
     return false
+}
+
+function endGame(win) {
+    let mensaje = win && "Ganaste pive" || "Perdiste causa"
+    paused = true
+    alert(mensaje)
+    endTimer()
 }

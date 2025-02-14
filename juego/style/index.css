@@ -13,7 +13,7 @@
 .card-hide{
     background-color: skyblue;
 
-    transition: transform 0.6s;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
     transform: rotateY(180deg);
 }
@@ -25,7 +25,28 @@
 .card-show {
     background-color: antiquewhite;
 
-    transition: transform 0.6s;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
     transform: rotateY(0deg);
+}
+
+@keyframes bg-animation {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: yellow;
+    }
+    75% {
+        background-color: orange;
+    }
+    87%{
+        background-color: red;
+    }
+    93%{
+        background-color: yellow;
+    }
+    100%{
+        background-color: red;
+    }
 }

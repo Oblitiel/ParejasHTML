@@ -1,4 +1,4 @@
-var time = 90
+var time = 60
 var iniTime = time
 var interval
 
@@ -15,8 +15,12 @@ function passTime() {
     time--
     writeTime()
     if (time <= 0) {
-        clearInterval(interval)
+        endGame()
     }
+}
+
+function endTimer() {
+    clearInterval(interval)
 }
 
 function getFormattedTime() {
