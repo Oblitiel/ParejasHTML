@@ -127,4 +127,5 @@ function endGame(win) {
     paused = true
     alert(mensaje)
     endTimer()
+    createFormAgeValidation()
 }

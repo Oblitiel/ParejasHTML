@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+/* .card-hide:hover{
+    transform : scale(0.8);
+} */
+
 .card-hide{
     background-color: skyblue;
 
@@ -34,28 +38,25 @@
     0% {
         background-color: white;
     }
-    25% {
+    35% {
         background-color: yellow;
     }
-    50% {
-        background-color: orange;
-    }
-    50%{
+    75%{
         background-color: red;
     }
-    50%{
+    79%{
         background-color: yellow;
     }
-    100%{
+    83%{
         background-color: red;
     }
-    90%{
+    87%{
         background-color: yellow;
     }
-    100%{
+    91%{
         background-color: red;
     }
-    90%{
+    95%{
         background-color: yellow;
     }
     100%{
