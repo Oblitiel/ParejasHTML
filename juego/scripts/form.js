@@ -27,7 +27,7 @@ function createFormAgeValidation(){
                 {tag:"br"},
                 {tag:"input",
                     attr:{
-                        type:"button",
+                        type:"button",sdfsd
                     }
                 }
             ]
