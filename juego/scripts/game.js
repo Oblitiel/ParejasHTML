@@ -6,16 +6,19 @@ var unSolvedPairs = 0
 function runGame(){
     let row = document.getElementById("in_fila").value
     let col = document.getElementById("in_col").value
-    prepareGame(col, row)
-    startTimer()
-    addPoints(1000)
-}
-
-function prepareGame(col, row){
+    
     if (((row * col) % 2 ) != 0 || row<0 || col<0) {
         alert("No son unos valores de pareja validos")
         return
     }
+
+    prepareGame(col, row)
+}
+
+function prepareGame(col, row){
+    // Iniciar timer y Puntos
+    startTimer()
+    addPoints(1000)
 
     // Cambiar color del fondo
     let body = document.getElementById("body")
@@ -30,8 +33,8 @@ function prepareGame(col, row){
     unSolvedPairs = row * col / 2
 
     // Genera la tabla
-    let table = generateTable(col,row)
-    document.getElementById("game_div").appendChild(table)
+    document.getElementById("game_div").innerHTML="" // Vacio el div
+    document.getElementById("game_div").appendChild(generateTable(col,row))
 }
 
 function generateTable(col, row) {
@@ -123,9 +126,33 @@ function isPair(pair){
 }
 
 function endGame(win) {
-    let mensaje = win && "Ganaste pive" || "Perdiste causa"
+    let mensaje = win && "Has Ganado!! :)" || "Has Perdido :("
     paused = true
     alert(mensaje)
     endTimer()
-    createFormAgeValidation()
+    document.getElementById("age_div").classList.remove("invisible")
+
+}
+
+// Score
+var score = 0
+
+function writeScore() {
+    let div = document.getElementById("score_div")
+    let p = div.firstElementChild
+    p.innerHTML = score
+}
+
+function addPoints(points) {
+    score += points
+    writeScore()
+}
+
+// Forms
+function showForm(isAdult) {
+    document.getElementById("age_div").classList.add("invisible")
+    document.getElementById("form_div").classList.remove("invisible")
+    if (isAdult) {
+        document.getElementById("extra_form").classList.remove("invisible")
+    }
 }

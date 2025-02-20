@@ -1,30 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style/index.css">
-        <title>Juego Parejas</title>
-    </head>
-    <body id="body">
-        <h1>Juego de Parejas</h1>
-        <div id="input_div">
-            <label for="in_fila">Numero de filas:</label>
-            <input type="number" min="1" max="10" value="3" name="in_fila" id="in_fila">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/index.css">
+    <title>Juego Parejas</title>
+</head>
+
+<body id="body">
+    <h1>Juego de Parejas</h1>
+    <div id="timer_div">
+        <p>01:00</p>
+    </div>
+    <div id="score_div">
+        <p>1000</p>
+    </div>
+    <div id="input_div">
+        <label for="in_fila">Numero de filas:</label>
+        <input type="number" min="1" max="10" value="3" name="in_fila" id="in_fila" onchange="capValue(this)">
+        <br>
+        <label for="in_col">Numero de columnas:</label>
+        <input type="number" min="1" max="10" value="4" name="in_col" id="in_col" onchange="capValue(this)">
+        <br>
+        <input type="button" value="Iniciar Juego" onclick="runGame()">
+    </div>
+    <div id="game_div"></div>
+    <div id="age_div" class="invisible">
+        <form>
+            <h2>Tengo más de 18 años</h2>
             <br>
-            <label for="in_col">Numero de columnas:</label>
-            <input type="number" min="1" max="10" value="4" name="in_col" id="in_col">
+            <input type="button" value="Si" onclick="showForm(true)">
+            <input type="button" value="No" onclick="showForm(false)">
+        </form>
+    </div>
+    <div id="form_div" class="invisible">
+        <form action="">
+            <table>
+                <tr>
+                    <td>
+                        <label for="man">Hombre</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="sex" value="man">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="woman">Mujer</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="sex" value="woman">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="other">Otro</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="sex" value="other">
+                    </td>
+                </tr>
+            </table>
+            <label for="age">Nombre:</label>
+            <input type="text" name="name">
             <br>
-            <input type="button" value="Iniciar Juego" onclick="runGame()">
-        </div>
-        <div id="timer_div"><p></p></div>
-        <div id="score_div"><p></p></div>
-        <div id="game_div"></div>
-        <div id="form_div"></div>
-        <script src="scripts/game.js"></script>
-        <script src="scripts/timer.js"></script>
-        <script src="scripts/score.js"></script>
-        <script src="scripts/form.js"></script>
-        <script src="scripts/nose.js"></script>
-    </body>
+            <label for="">Año de nacimiento:</label>
+            <input type="number" name="born">
+            <br>
+            <span id="extra_form" class="invisible">
+                <label for="color">Color favorito:</label>
+                <input type="text" name="color">
+                <br>
+                <label for="animal">Animal favorito:</label>
+                <input type="text" name="animal">
+                <br>
+                <label for="cancion">Cancion favorita:</label>
+                <input type="text" name="cancion">
+                <br>
+            </span>
+        </form>
+    </div>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/timer.js"></script>
+</body>
+
 </html>
