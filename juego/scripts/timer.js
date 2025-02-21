@@ -34,17 +34,6 @@ function getFormattedTime() {
 }
 
 function writeTime() {
-    let div = document.getElementById("timer_div")
-    let p = div.firstElementChild
+    let p = document.getElementById("timer")
     p.innerHTML = getFormattedTime()
-}
-
-function capValue(elem) {
-    if (elem.value <= 0) {
-        elem.value = 1
-    }
-
-    if (elem.value >= 10) {
-        elem.value = 10
-    }
 }

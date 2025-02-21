@@ -1,7 +1,54 @@
+* {
+    font-family: "Signika Negative", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    margin: 0px;
+}
+
 .invisible {
     display: none;
 }
 
+#game_state {
+    background-color: aqua;
+    margin: auto;
+    width: 50%;
+
+    text-align: center;
+}
+
+#game_state > div{
+    margin: auto;
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#input_div {
+    background-color: blueviolet;
+    margin: auto;
+    width: 25%;
+
+    justify-content: center;
+}
+
+#game_div {
+    background-color: crimson;
+}
+
+#age_div {
+    background-color: crimson;
+}
+
+#form_div {
+    background-color: crimson;
+}
+
+/* Cards */
 .card {
     border-radius: 1vh;
     
@@ -9,10 +56,6 @@
     justify-content: center;
     align-items: center;
 }
-
-/* .card-hide:hover{
-    transform : scale(0.8);
-} */
 
 .card-hide{
     background-color: skyblue;

@@ -6,43 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style/index.css">
     <title>Juego Parejas</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body id="body">
-    <h1>Juego de Parejas</h1>
-    <div id="timer_div">
-        <p>01:00</p>
-    </div>
-    <div id="score_div">
-        <p>1000</p>
+    <div id="game_state">
+        <h1>Juego de Parejas</h1>
+        <div>
+            <p id="timer">01:00</p>
+            <p id="score">1000</p>
+        </div>
     </div>
     <div id="input_div">
-        <label for="in_fila">Numero de filas:</label>
-        <input type="number" min="1" max="10" value="3" name="in_fila" id="in_fila" onchange="capValue(this)">
-        <br>
-        <label for="in_col">Numero de columnas:</label>
-        <input type="number" min="1" max="10" value="4" name="in_col" id="in_col" onchange="capValue(this)">
-        <br>
+        <label for="in_fila">Filas:</label>
+        <input type="number" min="1" max="5" value="3" name="in_fila" id="in_fila" onchange="capValue(this,5)">
+        <label for="in_col">Columnas:</label>
+        <input type="number" min="1" max="10" value="4" name="in_col" id="in_col" onchange="capValue(this,10)">
         <input type="button" value="Iniciar Juego" onclick="runGame()">
     </div>
     <div id="game_div"></div>
     <div id="age_div" class="invisible">
         <form>
             <h2>Tengo más de 18 años</h2>
-            <br>
             <input type="button" value="Si" onclick="showForm(true)">
             <input type="button" value="No" onclick="showForm(false)">
         </form>
     </div>
     <div id="form_div" class="invisible">
         <form action="">
+            <h2>Encuesta</h2>
             <table>
                 <tr>
                     <td>
                         <label for="man">Hombre</label>
                     </td>
                     <td>
-                        <input type="radio" name="sex" value="man">
+                        <input type="radio" name="sex" value="man" id="man">
                     </td>
                 </tr>
                 <tr>
@@ -50,7 +53,7 @@
                         <label for="woman">Mujer</label>
                     </td>
                     <td>
-                        <input type="radio" name="sex" value="woman">
+                        <input type="radio" name="sex" value="woman" id="woman">
                     </td>
                 </tr>
                 <tr>
@@ -58,25 +61,25 @@
                         <label for="other">Otro</label>
                     </td>
                     <td>
-                        <input type="radio" name="sex" value="other">
+                        <input type="radio" name="sex" value="other" id="other">
                     </td>
                 </tr>
             </table>
-            <label for="age">Nombre:</label>
-            <input type="text" name="name">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name">
             <br>
-            <label for="">Año de nacimiento:</label>
-            <input type="number" name="born">
+            <label for="born">Año de nacimiento:</label>
+            <input type="number" name="born" id="born">
             <br>
             <span id="extra_form" class="invisible">
                 <label for="color">Color favorito:</label>
-                <input type="text" name="color">
+                <input type="text" name="color" id="color">
                 <br>
                 <label for="animal">Animal favorito:</label>
-                <input type="text" name="animal">
+                <input type="text" name="animal" id="animal">
                 <br>
                 <label for="cancion">Cancion favorita:</label>
-                <input type="text" name="cancion">
+                <input type="text" name="cancion" id="cancion">
                 <br>
             </span>
         </form>

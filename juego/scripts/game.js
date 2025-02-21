@@ -53,7 +53,7 @@ function generateTable(col, row) {
             let td = document.createElement("td")
             
             let randIndex = Math.floor(Math.random()*nums.length)
-            let card = generateCard(nums[randIndex], 50 / col)
+            let card = generateCard(nums[randIndex], 12.5)
             nums.splice(randIndex,1)
 
             td.appendChild(card)
@@ -134,12 +134,22 @@ function endGame(win) {
 
 }
 
+// Misc
+function capValue(elem,max) {
+    if (elem.value <= 0) {
+        elem.value = 1
+    }
+
+    if (elem.value >= max) {
+        elem.value = max
+    }
+}
+
 // Score
 var score = 0
 
 function writeScore() {
-    let div = document.getElementById("score_div")
-    let p = div.firstElementChild
+    let p = document.getElementById("score")
     p.innerHTML = score
 }
 
