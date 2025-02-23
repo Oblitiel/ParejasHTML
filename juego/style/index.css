@@ -6,24 +6,42 @@
 }
 
 body {
-    background-color: rgb(124, 19, 33);
+    background-color: rgb(35, 39, 92);
     animation-fill-mode: forwards;
 }
 
-#game_state {
-    background-color: crimson;
-    margin: auto;
-    width: 50%;
-    padding: 5px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px rgba(75, 50, 75, 0.5);
+.button {
+    background-color: rgb(243, 151, 12);
+    border-radius: 10px;
+    border-color: rgb(134, 134, 15);
+    border-style: outset;
+    min-width: 50px;
+    
+}
 
+.button:hover{
+    background-color: rgb(243, 201, 12);
+}
+
+.playfullbutton{
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    transform: scale(1);
+}
+
+.playfullbutton:hover{
+    transition: transform 0.5s;
+    transform: scale(1.5) rotate(5deg);
+}
+
+#game_state {
+    width: 50%;
+    min-width: 280px;
 
     text-align: center;
 }
 
 #game_state > div{
-    margin: 10px auto 10px auto;
     width: 25%;
     display: flex;
 
@@ -31,49 +49,32 @@ body {
 }
 
 #input_div {
-    margin: 10px auto 10px auto;
     width: 40%;
+    min-width: 280px;
     display: flex;
 
     justify-content: space-around;
 }
 
 #game_div {
-    background-color: crimson;
-    display: flex;
-    margin: 10px auto 10px auto;
     width: 80%;
-    padding: 15px;
-    box-shadow: 5px 5px 5px rgba(75, 50, 75, 0.5);
-
-    border-radius: 15px;
-    
+    display: flex;
 
     justify-content: center;
 }
 
 #age_div {
-    background-color: crimson;
-    margin: 10px auto 10px auto;
-    width: 80%;
-    padding: 15px;
-    box-shadow: 5px 5px 5px rgba(75, 50, 75, 0.5);
-    
-    border-radius: 15px;
+    width: 40%;
+    min-width: 240px;
     display: flex;
-
+    
     justify-content: center;
 }
 
 #form_div {
-    background-color: crimson;
+    width: 40%;
+    min-width: 240px;
     display: flex;
-    margin: 10px auto 10px auto;
-    width: 80%;
-    padding: 15px;
-    box-shadow: 5px 5px 5px rgba(75, 50, 75, 0.5);
-    
-    border-radius: 15px;
 
     justify-content: center;
 }
@@ -85,10 +86,23 @@ body {
     justify-content: center;
 }
 
+/* Basic Aparences */
+.box{
+    background-color: crimson;
+    border-radius: 30px;
+    padding: 15px;
+
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.center{
+    margin: 5px auto 5px auto;
+}
+
 /* Cards */
 .card {
     border-radius: 1vh;
-    box-shadow: -5px 5px 5px rgba(75, 50, 75, 0.5);
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
     margin: 5px;
     
     display: flex;
@@ -110,7 +124,7 @@ body {
 
 .card-show {
     background-color: antiquewhite;
-    box-shadow: 5px 5px 5px rgba(75, 50, 75, 0.5);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 
     transition: transform 0.5s;
     transform-style: preserve-3d;
@@ -118,6 +132,7 @@ body {
 }
 
 @keyframes bg-animation {
+    0%{}
     35% {
         background-color: yellow;
     }

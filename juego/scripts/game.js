@@ -135,6 +135,8 @@ function endGame(win) {
     changeVisibility(document.getElementById("game_div"),false)
     changeVisibility(document.getElementById("age_div"),true)
 
+    let body = document.getElementById("body")
+    body.style.animationName = ""
 }
 
 // Misc
@@ -171,11 +173,4 @@ function writeScore() {
 function addPoints(points) {
     score += points
     writeScore()
-}
-
-// Forms
-function showForm(isAdult) {
-    changeVisibility(document.getElementById("age_div"),false)
-    changeVisibility(document.getElementById("form_div"),true)
-    changeVisibility(document.getElementById("extra_form"),isAdult)
 }

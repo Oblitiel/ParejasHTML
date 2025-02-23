@@ -13,30 +13,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
-<body id="body">
-    <div id="game_state">
+<body id="body" >
+    <div id="game_state" class="box center">
         <h1>Juego de Parejas</h1>
-        <div>
+        <div class="center">
             <p id="timer">01:00</p>
+            <div style="min-width: 10px;"></div>
             <p id="score">1000</p>
         </div>
     </div>
-    <div id="input_div">
+    <div id="input_div" class="box center">
         <label for="in_fila">Filas:</label>
         <input type="number" min="1" max="5" value="3" name="in_fila" id="in_fila" onchange="capValue(this,5)">
         <label for="in_col">Columnas:</label>
         <input type="number" min="1" max="10" value="4" name="in_col" id="in_col" onchange="capValue(this,10)">
-        <input type="button" value="Iniciar Juego" onclick="runGame()">
+        <input type="button" value="Iniciar Juego" onclick="runGame()"class="button playfullbutton">
     </div>
-    <div id="game_div" style="display: none;"></div>
-    <div id="age_div" style="display: none;">
+    <div id="game_div" style="display: none;" class="box center"></div>
+    <div id="age_div" style="display: none;" class="box center">
         <form>
             <h2>Tengo más de 18 años</h2>
-            <input type="button" value="Si" onclick="showForm(true)">
-            <input type="button" value="No" onclick="showForm(false)">
+            <input type="button" value="Si" onclick="showForm(true)"class="button">
+            <input type="button" value="No" onclick="showForm(false)"class="button">
         </form>
     </div>
-    <div id="form_div" style="display: none;">
+    <div id="form_div" style="display: none;" class="box center">
         <form action="">
             <h2>Encuesta</h2>
             <table>
@@ -82,10 +83,12 @@
                 <input type="text" name="cancion" id="cancion">
                 <br>
             </span>
+            <input type="button" value="Enviar" onclick="sendForm()" class="button">
         </form>
     </div>
     <script src="scripts/game.js"></script>
     <script src="scripts/timer.js"></script>
+    <script src="scripts/form.js"></script>
 </body>
 
 </html>
