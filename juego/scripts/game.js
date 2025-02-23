@@ -16,6 +16,7 @@ function runGame(){
 }
 
 function prepareGame(col, row){
+    changeVisibility(document.getElementById("game_div"),true)
     // Iniciar timer y Puntos
     startTimer()
     addPoints(1000)
@@ -27,7 +28,7 @@ function prepareGame(col, row){
 
     // Esconde el div
     let div = document.getElementById("input_div")
-    div.classList.add("invisible")
+    changeVisibility(div,false)
 
     // Calcula el numero de parejas a resolver
     unSolvedPairs = row * col / 2
@@ -130,7 +131,9 @@ function endGame(win) {
     paused = true
     alert(mensaje)
     endTimer()
-    document.getElementById("age_div").classList.remove("invisible")
+    
+    changeVisibility(document.getElementById("game_div"),false)
+    changeVisibility(document.getElementById("age_div"),true)
 
 }
 
@@ -142,6 +145,18 @@ function capValue(elem,max) {
 
     if (elem.value >= max) {
         elem.value = max
+    }
+}
+
+function changeVisibility(elem ,setVisible) {
+    if (setVisible == undefined) {
+        setVisible = elem.style.display == "none"
+    }
+
+    if (setVisible) {
+        elem.style.display = ""
+    } else {
+        elem.style.display = "none"
     }
 }
 
@@ -160,9 +175,7 @@ function addPoints(points) {
 
 // Forms
 function showForm(isAdult) {
-    document.getElementById("age_div").classList.add("invisible")
-    document.getElementById("form_div").classList.remove("invisible")
-    if (isAdult) {
-        document.getElementById("extra_form").classList.remove("invisible")
-    }
+    changeVisibility(document.getElementById("age_div"),false)
+    changeVisibility(document.getElementById("form_div"),true)
+    changeVisibility(document.getElementById("extra_form"),isAdult)
 }

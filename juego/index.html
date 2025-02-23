@@ -28,15 +28,15 @@
         <input type="number" min="1" max="10" value="4" name="in_col" id="in_col" onchange="capValue(this,10)">
         <input type="button" value="Iniciar Juego" onclick="runGame()">
     </div>
-    <div id="game_div"></div>
-    <div id="age_div" class="invisible">
+    <div id="game_div" style="display: none;"></div>
+    <div id="age_div" style="display: none;">
         <form>
             <h2>Tengo más de 18 años</h2>
             <input type="button" value="Si" onclick="showForm(true)">
             <input type="button" value="No" onclick="showForm(false)">
         </form>
     </div>
-    <div id="form_div" class="invisible">
+    <div id="form_div" style="display: none;">
         <form action="">
             <h2>Encuesta</h2>
             <table>
@@ -69,9 +69,9 @@
             <input type="text" name="name" id="name">
             <br>
             <label for="born">Año de nacimiento:</label>
-            <input type="number" name="born" id="born">
+            <input type="number" name="born" id="born" value="2000" min="1900" max="2025">
             <br>
-            <span id="extra_form" class="invisible">
+            <span id="extra_form">
                 <label for="color">Color favorito:</label>
                 <input type="text" name="color" id="color">
                 <br>
