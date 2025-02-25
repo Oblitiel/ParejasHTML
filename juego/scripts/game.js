@@ -46,6 +46,7 @@ function generateTable(col, row) {
         nums.push(index)
         nums.push(index)
     }
+    images = getPosiblePairsImages(row*col)
 
     for (let i = 0; i < row; i++) {
         var tr = document.createElement("tr")
@@ -54,7 +55,7 @@ function generateTable(col, row) {
             let td = document.createElement("td")
             
             let randIndex = Math.floor(Math.random()*nums.length)
-            let card = generateCard(nums[randIndex], 12.5)
+            let card = generateCard(nums[randIndex], 12.5, images)
             nums.splice(randIndex,1)
 
             td.appendChild(card)
@@ -66,7 +67,7 @@ function generateTable(col, row) {
     return table
 }
 
-function generateCard(num, size){
+function generateCard(num, size, images){
     let card = document.createElement("div")
     card.classList.add("card")
     card.classList.add("card-hide")
@@ -76,10 +77,13 @@ function generateCard(num, size){
 
     card.setAttribute("onclick","flipAndCheck(this)")
 
-    var p = document.createElement("p")
     card.number = num
-    p.innerHTML = card.number
-    card.appendChild(p)
+
+    var img = document.createElement("img")
+    img.setAttribute("src",images[num])
+    img.style.width = size + "vh"
+    card.appendChild(img)
+    
     return card
 }
 
@@ -160,6 +164,23 @@ function changeVisibility(elem ,setVisible) {
     } else {
         elem.style.display = "none"
     }
+}
+
+function getPosiblePairsImages(cardNum) {
+    let pairs = cardNum / 2
+    let images = []
+
+    while (images.length < pairs) {
+        let randIndex = Math.floor(Math.random()*24 + 1)
+        if (randIndex < 10) {randIndex = "0" + randIndex}
+        let rute = "src/emo" + randIndex + ".jpeg"
+
+        if (!images.includes(rute)) {
+            images.push(rute)
+        }
+    }
+
+    return images
 }
 
 // Score

@@ -79,13 +79,6 @@ body {
     justify-content: center;
 }
 
-#form_div > form{
-    background-color: burlywood;
-    display: block;
-
-    justify-content: center;
-}
-
 /* Basic Aparences */
 .box{
     background-color: crimson;
@@ -108,6 +101,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
 }
 
 .card-hide{
@@ -118,7 +113,7 @@ body {
     transform: rotateY(180deg);
 }
 
-.card-hide > p {
+.card-hide > img {
     display: none;
 }
 
